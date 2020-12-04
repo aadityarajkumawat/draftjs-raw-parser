@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { ExampleComponent } from 'draftjs-raw-parser'
+import { ParsedData } from 'draftjs-raw-parser'
 import 'draftjs-raw-parser/dist/index.css'
+import { dataS } from './data'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return <ParsedData draftJSRawData={dataS} />
 }
 
 export default App
