@@ -102,8 +102,6 @@ export const parseJsonStringToContent = (
     }
   }
 
-  console.log(stringifiedStyles, finalStylesArray)
-
   function completeLine(
     i: number,
     j: number,
