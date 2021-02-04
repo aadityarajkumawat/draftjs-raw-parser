@@ -30,7 +30,9 @@ const App = () => {
         handleKeyCommand={handleKeyCommand}
         placeholder='Content'
       />
-      <ParsedData draftJSRawData={JSON.stringify(postRawContent)} />
+      <div style={{ border: '1px solid' }}>
+        <ParsedData draftJSRawData={JSON.stringify(postRawContent)} />
+      </div>
     </Fragment>
   )
 }

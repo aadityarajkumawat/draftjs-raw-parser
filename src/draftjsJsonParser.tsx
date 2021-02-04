@@ -1,36 +1,15 @@
 import React, { Fragment } from 'react'
 import { v4 as uid } from 'uuid'
-import { BOLD_ITALIC, EMPTY_STYLE, ITALIC, NO_STYLE, STRONG } from './constants'
-
-interface InlineStyleRangeI {
-  offset: number
-  length: number
-  style: string
-}
-
-interface ContentArrayI {
-  key: string
-  text: string
-  type: string
-  depth: number
-  inlineStyleRanges: Array<InlineStyleRangeI>
-  entityRanges: any
-  data: any
-}
-
-interface StringifiedStyle {
-  content: string
-  lineNumber: number
-  originalStyles: InlineStyleRangeI
-  styleI: string
-}
-
-interface FinalStylesArrayI {
-  content: string
-  lineNumber: number
-  originalStyles: InlineStyleRangeI
-  styleI: string
-}
+import {
+  BOLD_ITALIC,
+  ContentArrayI,
+  EMPTY_STYLE,
+  FinalStylesArrayI,
+  ITALIC,
+  NO_STYLE,
+  StringifiedStyle,
+  STRONG
+} from './constants'
 
 export type RichStyle = 'strong' | 'italic' | 'bold+italic'
 
@@ -74,6 +53,8 @@ export const parseJsonStringToContent = (
     }
   }
 
+  // console.log(stringifiedStyles)
+
   if (finalStylesArray.length === 0 && stringifiedStyles.length > 0) {
     finalStylesArray.push(stringifiedStyles[0])
   }
@@ -101,6 +82,8 @@ export const parseJsonStringToContent = (
       finalStylesArray.push(sty)
     }
   }
+
+  console.log(finalStylesArray)
 
   function completeLine(
     i: number,
