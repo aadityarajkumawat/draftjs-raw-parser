@@ -3,7 +3,7 @@ import { v4 as uid } from 'uuid'
 import {
   BOLD_ITALIC,
   ContentArrayI,
-  EMPTY_STYLE,
+  EMPTY_LINE,
   FinalStylesArrayI,
   ITALIC,
   NO_STYLE,
@@ -34,7 +34,7 @@ export const parseJsonStringToContent = (
     } else if (text === '') {
       stringifiedStyles.push({
         lineNumber: i,
-        content: EMPTY_STYLE,
+        content: EMPTY_LINE,
         originalStyles: { length: -1, offset: -1, style: '' },
         styleI: ''
       })
@@ -52,8 +52,6 @@ export const parseJsonStringToContent = (
       }
     }
   }
-
-  // console.log(stringifiedStyles)
 
   if (finalStylesArray.length === 0 && stringifiedStyles.length > 0) {
     finalStylesArray.push(stringifiedStyles[0])
@@ -83,8 +81,6 @@ export const parseJsonStringToContent = (
     }
   }
 
-  console.log(finalStylesArray)
-
   function completeLine(
     i: number,
     j: number,
@@ -101,6 +97,7 @@ export const parseJsonStringToContent = (
               finalStylesArray[j].originalStyles.length,
             text.length
           )}
+          <br />
         </span>
       )
     }
@@ -193,7 +190,12 @@ export const parseJsonStringToContent = (
       for (let j = 0; j < finalStylesArray.length; j++) {
         if (finalStylesArray[j].lineNumber === i) {
           if (finalStylesArray[i].content === NO_STYLE) {
-            finalLine.push(<span key={uid()}>{text}</span>)
+            finalLine.push(
+              <span key={uid()}>
+                {text}
+                <br />
+              </span>
+            )
           } else {
             if (finalStylesArray[j].styleI === 'BOLD') {
               if (
