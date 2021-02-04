@@ -7,22 +7,57 @@
 ## Install
 
 ```bash
-npm install --save draftjs-raw-parser
+npm install draftjs-raw-parser
+```
+
+or
+
+```bash
+yarn add draftjs-raw-parser
 ```
 
 ## Usage
 
 ```tsx
-import React, { Component } from 'react'
+import React from 'react'
+import { ParsedData } from 'draftjs-raw-parser'
+import { convertToRaw, Editor, EditorState, RichUtils } from 'draft-js'
 
-import MyComponent from 'draftjs-raw-parser'
-import 'draftjs-raw-parser/dist/index.css'
+const App = () => {
+  const [editorState, setEditorState] = React.useState(() =>
+    EditorState.createEmpty()
+  )
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
+  const postRawContent = convertToRaw(editorState.getCurrentContent()).blocks
+  console.log(postRawContent)
+
+  const handleKeyCommand = (command: any, editorState: any) => {
+    const newState = RichUtils.handleKeyCommand(editorState, command)
+
+    if (newState) {
+      setEditorState(newState)
+      return 'handled'
+    }
+
+    return 'not-handled'
   }
+  return (
+    <Fragment>
+      <Editor
+        editorState={editorState}
+        onChange={setEditorState}
+        handleKeyCommand={handleKeyCommand}
+        placeholder='Content'
+      />
+      {/* Parsed Data */}
+      <div style={{ border: '1px solid' }}>
+        <ParsedData draftJSRawData={JSON.stringify(postRawContent)} />
+      </div>
+    </Fragment>
+  )
 }
+
+export default App
 ```
 
 ## License
