@@ -35,7 +35,6 @@ export const parseJsonStringToContent = (
       finalContent.push(
         <Fragment key={uid()}>
           <br key={uid()} />
-          <br key={uid()} />
         </Fragment>
       )
     } else {

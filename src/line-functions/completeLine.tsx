@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { FinalStylesArrayI } from '../constants'
 import { v4 as uid } from 'uuid'
 
@@ -17,12 +17,11 @@ export function completeLine(
             finalStylesArray[j].originalStyles.length,
           text.length
         )}
-        <br />
       </span>
     )
 
     return finalLine
   }
 
-  return [<></>]
+  return [<Fragment></Fragment>]
 }
