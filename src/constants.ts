@@ -4,6 +4,8 @@ export const BOLD_ITALIC = 'bold+italic'
 export const EMPTY_LINE = 'empty'
 export const NO_STYLE = 'no-styles'
 
+export type RichStyle = 'strong' | 'italic' | 'bold+italic'
+
 export interface InlineStyleRangeI {
   offset: number
   length: number
