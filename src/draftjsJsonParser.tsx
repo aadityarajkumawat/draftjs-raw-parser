@@ -34,7 +34,7 @@ export const parseJsonStringToContent = (
     let { text } = contentArray[i]
     if (text.length === 0) {
       finalContent.push(
-        <Fragment key={uid()}>
+        <Fragment>
           <br key={uid()} className={uid()} />
         </Fragment>
       )
