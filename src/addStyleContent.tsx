@@ -17,7 +17,7 @@ export const addStyleContent = (
   switch (type) {
     case STRONG:
       return (
-        <strong key={uid()}>
+        <strong key={uid()} className={uid()}>
           {text.substring(
             finalStylesArray[j].originalStyles.offset,
             finalStylesArray[j].originalStyles.offset +
@@ -28,7 +28,7 @@ export const addStyleContent = (
 
     case ITALIC:
       return (
-        <i key={uid()}>
+        <i key={uid()} className={uid()}>
           {text.substring(
             finalStylesArray[j].originalStyles.offset,
             finalStylesArray[j].originalStyles.offset +
@@ -39,8 +39,8 @@ export const addStyleContent = (
 
     case BOLD_ITALIC:
       return (
-        <strong>
-          <i>
+        <strong key={uid()} className={uid()}>
+          <i key={uid()} className={uid()}>
             {text.substring(
               finalStylesArray[j].originalStyles.offset,
               finalStylesArray[j].originalStyles.offset +

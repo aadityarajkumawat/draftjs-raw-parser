@@ -11,7 +11,7 @@ export function completeLine(
 ): Array<JSX.Element> {
   if (!(finalStylesArray[j + 1] && finalStylesArray[j + 1].lineNumber === i)) {
     finalLine.push(
-      <span key={uid()}>
+      <span key={uid()} className={uid()}>
         {text.substring(
           finalStylesArray[j].originalStyles.offset +
             finalStylesArray[j].originalStyles.length,

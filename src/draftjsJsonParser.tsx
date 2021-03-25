@@ -6,7 +6,8 @@ import {
   FinalStylesArrayI,
   ITALIC,
   NO_STYLE,
-  STRONG
+  STRONG,
+  LineParams
 } from './constants'
 import { getFinalStylesArray } from './getFinalStylesArray'
 import { getStringifiedStyles } from './getStringifiedStyles'
@@ -34,7 +35,7 @@ export const parseJsonStringToContent = (
     if (text.length === 0) {
       finalContent.push(
         <Fragment key={uid()}>
-          <br key={uid()} />
+          <br key={uid()} className={uid()} />
         </Fragment>
       )
     } else {
@@ -43,32 +44,27 @@ export const parseJsonStringToContent = (
         if (finalStylesArray[j].lineNumber === i) {
           if (finalStylesArray[i].content === NO_STYLE) {
             finalLine.push(
-              <span key={uid()}>
+              <span key={uid()} className={uid()}>
                 {text}
-                <br />
+                <br key={uid()} className={uid()} />
               </span>
             )
           } else {
+            const lineParams: LineParams = {
+              finalStylesArray,
+              text,
+              finalLine,
+              j
+            }
+
             if (finalStylesArray[j].styleI === 'BOLD') {
               if (
                 finalStylesArray[j - 1] &&
                 finalStylesArray[j - 1].lineNumber === i
               ) {
-                finalLine = continueLine(
-                  finalStylesArray,
-                  text,
-                  finalLine,
-                  j,
-                  STRONG
-                )
+                finalLine = continueLine(lineParams, STRONG)
               } else {
-                finalLine = startLine(
-                  finalStylesArray,
-                  text,
-                  finalLine,
-                  j,
-                  STRONG
-                )
+                finalLine = startLine(lineParams, STRONG)
               }
               finalLine = completeLine(i, j, text, finalLine, finalStylesArray)
             } else if (finalStylesArray[j].styleI === 'ITALIC') {
@@ -76,21 +72,9 @@ export const parseJsonStringToContent = (
                 finalStylesArray[j - 1] &&
                 finalStylesArray[j - 1].lineNumber === i
               ) {
-                finalLine = continueLine(
-                  finalStylesArray,
-                  text,
-                  finalLine,
-                  j,
-                  ITALIC
-                )
+                finalLine = continueLine(lineParams, ITALIC)
               } else {
-                finalLine = startLine(
-                  finalStylesArray,
-                  text,
-                  finalLine,
-                  j,
-                  ITALIC
-                )
+                finalLine = startLine(lineParams, ITALIC)
               }
               finalLine = completeLine(i, j, text, finalLine, finalStylesArray)
             } else {
@@ -98,28 +82,20 @@ export const parseJsonStringToContent = (
                 finalStylesArray[j - 1] &&
                 finalStylesArray[j - 1].lineNumber === i
               ) {
-                finalLine = continueLine(
-                  finalStylesArray,
-                  text,
-                  finalLine,
-                  j,
-                  BOLD_ITALIC
-                )
+                finalLine = continueLine(lineParams, BOLD_ITALIC)
               } else {
-                finalLine = startLine(
-                  finalStylesArray,
-                  text,
-                  finalLine,
-                  j,
-                  BOLD_ITALIC
-                )
+                finalLine = startLine(lineParams, BOLD_ITALIC)
               }
               finalLine = completeLine(i, j, text, finalLine, finalStylesArray)
             }
           }
         }
       }
-      finalContent.push(<span key={uid()}>{finalLine}</span>)
+      finalContent.push(
+        <span key={uid()} className={uid()}>
+          {finalLine}
+        </span>
+      )
     }
   }
 

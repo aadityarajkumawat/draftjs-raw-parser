@@ -35,3 +35,10 @@ export interface FinalStylesArrayI {
   originalStyles: InlineStyleRangeI
   styleI: string
 }
+
+export interface LineParams {
+  finalStylesArray: Array<FinalStylesArrayI>
+  text: string
+  finalLine: Array<JSX.Element>
+  j: number
+}
