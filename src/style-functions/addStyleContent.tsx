@@ -6,7 +6,7 @@ import {
   ITALIC,
   RichStyle,
   STRONG
-} from './constants'
+} from '../constants'
 
 export const addStyleContent = (
   finalStylesArray: Array<FinalStylesArrayI>,

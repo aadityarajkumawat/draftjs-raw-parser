@@ -1,6 +1,6 @@
 import React from 'react'
 import { v4 as uid } from 'uuid'
-import { addStyleContent } from '../addStyleContent'
+import { addStyleContent } from '../style-functions/addStyleContent'
 import { LineParams, RichStyle } from '../constants'
 
 export function startLine(

@@ -18,7 +18,7 @@ yarn add draftjs-raw-parser
 
 ## Usage
 
-```tsx
+```jsx
 import React from 'react'
 import { ParsedData } from 'draftjs-raw-parser'
 import { convertToRaw, Editor, EditorState, RichUtils } from 'draft-js'
@@ -51,7 +51,11 @@ const App = () => {
       />
       {/* Parsed Data */}
       <div style={{ border: '1px solid' }}>
-        <ParsedData draftJSRawData={JSON.stringify(postRawContent)} />
+        <ParsedData
+          rawContent={JSON.stringify(postRawContent)}
+          color='#0066ff'
+          fontSize='20px'
+        />
       </div>
     </Fragment>
   )

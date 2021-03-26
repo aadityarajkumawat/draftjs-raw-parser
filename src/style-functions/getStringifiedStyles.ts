@@ -3,7 +3,7 @@ import {
   EMPTY_LINE,
   NO_STYLE,
   StringifiedStyle
-} from './constants'
+} from '../constants'
 
 export const getStringifiedStyles = (contentArray: Array<ContentArrayI>) => {
   const stringifiedStyles: Array<StringifiedStyle> = []

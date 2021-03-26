@@ -10,8 +10,10 @@ import {
   LineParams,
   RichStyle
 } from './constants'
-import { getFinalStylesArray } from './getFinalStylesArray'
-import { getStringifiedStyles } from './getStringifiedStyles'
+import {
+  getFinalStylesArray,
+  getStringifiedStyles
+} from './style-functions/index'
 import { completeLine, startLine, continueLine } from './line-functions/index'
 
 export const parseJsonStringToContent = (
@@ -75,7 +77,6 @@ export const parseJsonStringToContent = (
               finalLine = startLine(lineParams, STYLE)
             }
 
-            // complete line
             finalLine = completeLine(i, j, text, finalLine, finalStylesArray)
           }
         }

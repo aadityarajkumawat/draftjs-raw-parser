@@ -1,4 +1,4 @@
-import { FinalStylesArrayI, StringifiedStyle } from './constants'
+import { FinalStylesArrayI, StringifiedStyle } from '../constants'
 
 export const getFinalStylesArray = (
   stringifiedStyles: Array<StringifiedStyle>
