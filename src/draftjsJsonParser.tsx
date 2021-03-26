@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { v4 as uid } from 'uuid'
 import {
   BOLD_ITALIC,
@@ -7,21 +7,24 @@ import {
   ITALIC,
   NO_STYLE,
   STRONG,
-  LineParams
+  LineParams,
+  RichStyle
 } from './constants'
 import { getFinalStylesArray } from './getFinalStylesArray'
 import { getStringifiedStyles } from './getStringifiedStyles'
-import { completeLine } from './line-functions/completeLine'
-import { continueLine } from './line-functions/continueLine'
-import { startLine } from './line-functions/startLine'
+import { completeLine, startLine, continueLine } from './line-functions/index'
 
 export const parseJsonStringToContent = (
   contentString: string
 ): Array<JSX.Element> => {
   const contentArray: Array<ContentArrayI> = JSON.parse(contentString)
 
+  console.log(contentArray)
+
   let finalContent: Array<JSX.Element> = []
   let stringifiedStyles = getStringifiedStyles(contentArray)
+
+  console.log(stringifiedStyles)
   let finalStylesArray: Array<FinalStylesArrayI> = []
 
   if (finalStylesArray.length === 0 && stringifiedStyles.length > 0) {
@@ -30,13 +33,15 @@ export const parseJsonStringToContent = (
 
   finalStylesArray = getFinalStylesArray(stringifiedStyles)
 
+  console.log(finalStylesArray)
+
   for (let i = 0; i < contentArray.length; i++) {
     let { text } = contentArray[i]
     if (text.length === 0) {
       finalContent.push(
-        <Fragment>
+        <span key={uid()}>
           <br key={uid()} className={uid()} />
-        </Fragment>
+        </span>
       )
     } else {
       let finalLine: Array<JSX.Element> = []
@@ -57,37 +62,29 @@ export const parseJsonStringToContent = (
               j
             }
 
+            let STYLE: RichStyle = STRONG
+
             if (finalStylesArray[j].styleI === 'BOLD') {
-              if (
-                finalStylesArray[j - 1] &&
-                finalStylesArray[j - 1].lineNumber === i
-              ) {
-                finalLine = continueLine(lineParams, STRONG)
-              } else {
-                finalLine = startLine(lineParams, STRONG)
-              }
-              finalLine = completeLine(i, j, text, finalLine, finalStylesArray)
+              STYLE = STRONG
             } else if (finalStylesArray[j].styleI === 'ITALIC') {
-              if (
-                finalStylesArray[j - 1] &&
-                finalStylesArray[j - 1].lineNumber === i
-              ) {
-                finalLine = continueLine(lineParams, ITALIC)
-              } else {
-                finalLine = startLine(lineParams, ITALIC)
-              }
-              finalLine = completeLine(i, j, text, finalLine, finalStylesArray)
+              STYLE = ITALIC
             } else {
-              if (
-                finalStylesArray[j - 1] &&
-                finalStylesArray[j - 1].lineNumber === i
-              ) {
-                finalLine = continueLine(lineParams, BOLD_ITALIC)
-              } else {
-                finalLine = startLine(lineParams, BOLD_ITALIC)
-              }
-              finalLine = completeLine(i, j, text, finalLine, finalStylesArray)
+              STYLE = BOLD_ITALIC
             }
+
+            if (
+              finalStylesArray[j - 1] &&
+              finalStylesArray[j - 1].lineNumber === i
+            ) {
+              finalLine = continueLine(lineParams, STYLE)
+              console.log('line continue')
+            } else {
+              finalLine = startLine(lineParams, STYLE)
+              // console.log(finalStylesArray[j].lineNumber)
+              console.log('line start')
+            }
+            finalLine = completeLine(i, j, text, finalLine, finalStylesArray)
+            console.log(finalLine)
           }
         }
       }

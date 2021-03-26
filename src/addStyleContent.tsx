@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { v4 as uid } from 'uuid'
 import {
   BOLD_ITALIC,
@@ -50,6 +50,6 @@ export const addStyleContent = (
         </strong>
       )
     default:
-      return <Fragment></Fragment>
+      return <span key={uid()}></span>
   }
 }

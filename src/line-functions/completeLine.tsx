@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { FinalStylesArrayI } from '../constants'
 import { v4 as uid } from 'uuid'
 
@@ -20,8 +20,16 @@ export function completeLine(
       </span>
     )
 
+    // console.log(
+    //   text.substring(
+    //     finalStylesArray[j].originalStyles.offset +
+    //       finalStylesArray[j].originalStyles.length,
+    //     text.length
+    //   )
+    // )
+
     return finalLine
   }
 
-  return [<Fragment></Fragment>]
+  return [<section></section>]
 }
