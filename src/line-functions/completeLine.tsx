@@ -19,17 +19,7 @@ export function completeLine(
         )}
       </span>
     )
-
-    // console.log(
-    //   text.substring(
-    //     finalStylesArray[j].originalStyles.offset +
-    //       finalStylesArray[j].originalStyles.length,
-    //     text.length
-    //   )
-    // )
-
-    return finalLine
   }
 
-  return [<section></section>]
+  return finalLine
 }

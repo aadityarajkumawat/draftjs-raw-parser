@@ -77,14 +77,15 @@ export const parseJsonStringToContent = (
               finalStylesArray[j - 1].lineNumber === i
             ) {
               finalLine = continueLine(lineParams, STYLE)
-              console.log('line continue')
+              console.log('line continue', finalLine)
             } else {
               finalLine = startLine(lineParams, STYLE)
-              // console.log(finalStylesArray[j].lineNumber)
-              console.log('line start')
+              console.log('line start', finalLine)
             }
+
+            // complete line
             finalLine = completeLine(i, j, text, finalLine, finalStylesArray)
-            console.log(finalLine)
+            console.log('line complete', finalLine)
           }
         }
       }
