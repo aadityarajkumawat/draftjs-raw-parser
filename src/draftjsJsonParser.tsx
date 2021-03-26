@@ -19,12 +19,8 @@ export const parseJsonStringToContent = (
 ): Array<JSX.Element> => {
   const contentArray: Array<ContentArrayI> = JSON.parse(contentString)
 
-  console.log(contentArray)
-
   let finalContent: Array<JSX.Element> = []
   let stringifiedStyles = getStringifiedStyles(contentArray)
-
-  console.log(stringifiedStyles)
   let finalStylesArray: Array<FinalStylesArrayI> = []
 
   if (finalStylesArray.length === 0 && stringifiedStyles.length > 0) {
@@ -32,8 +28,6 @@ export const parseJsonStringToContent = (
   }
 
   finalStylesArray = getFinalStylesArray(stringifiedStyles)
-
-  console.log(finalStylesArray)
 
   for (let i = 0; i < contentArray.length; i++) {
     let { text } = contentArray[i]
@@ -77,15 +71,12 @@ export const parseJsonStringToContent = (
               finalStylesArray[j - 1].lineNumber === i
             ) {
               finalLine = continueLine(lineParams, STYLE)
-              console.log('line continue', finalLine)
             } else {
               finalLine = startLine(lineParams, STYLE)
-              console.log('line start', finalLine)
             }
 
             // complete line
             finalLine = completeLine(i, j, text, finalLine, finalStylesArray)
-            console.log('line complete', finalLine)
           }
         }
       }
