@@ -2,7 +2,7 @@ import {
   ContentArrayI,
   EMPTY_LINE,
   NO_STYLE,
-  StringifiedStyle
+  StringifiedStyle,
 } from '../constants'
 
 export const getStringifiedStyles = (contentArray: Array<ContentArrayI>) => {
@@ -14,14 +14,14 @@ export const getStringifiedStyles = (contentArray: Array<ContentArrayI>) => {
         lineNumber: i,
         content: NO_STYLE,
         originalStyles: { length: -1, offset: -1, style: '' },
-        styleI: ''
+        styleI: '',
       })
     } else if (text === '') {
       stringifiedStyles.push({
         lineNumber: i,
         content: EMPTY_LINE,
         originalStyles: { length: -1, offset: -1, style: '' },
-        styleI: ''
+        styleI: '',
       })
     } else {
       for (let j = 0; j < inlineStyleRanges.length; j++) {
@@ -29,10 +29,10 @@ export const getStringifiedStyles = (contentArray: Array<ContentArrayI>) => {
           lineNumber: i,
           content: JSON.stringify(inlineStyleRanges[j]).substring(
             1,
-            JSON.stringify(inlineStyleRanges[j]).indexOf('style') - 2
+            JSON.stringify(inlineStyleRanges[j]).indexOf('style') - 2,
           ),
           styleI: inlineStyleRanges[j].style,
-          originalStyles: inlineStyleRanges[j]
+          originalStyles: inlineStyleRanges[j],
         })
       }
     }

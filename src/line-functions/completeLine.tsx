@@ -1,6 +1,6 @@
 import React from 'react'
-import { FinalStylesArrayI } from '../constants'
 import { v4 as uid } from 'uuid'
+import { FinalStylesArrayI } from '../constants'
 
 export function completeLine(
   i: number,

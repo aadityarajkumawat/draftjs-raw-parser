@@ -1,7 +1,7 @@
 import { FinalStylesArrayI, StringifiedStyle } from '../constants'
 
 export const getFinalStylesArray = (
-  stringifiedStyles: Array<StringifiedStyle>
+  stringifiedStyles: Array<StringifiedStyle>,
 ) => {
   let finalStylesArray: Array<FinalStylesArrayI> = []
   for (let i = 0; i < stringifiedStyles.length; i++) {

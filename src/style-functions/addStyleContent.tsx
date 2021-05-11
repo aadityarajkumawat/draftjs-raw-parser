@@ -5,14 +5,14 @@ import {
   FinalStylesArrayI,
   ITALIC,
   RichStyle,
-  STRONG
+  STRONG,
 } from '../constants'
 
 export const addStyleContent = (
   finalStylesArray: Array<FinalStylesArrayI>,
   text: string,
   j: number,
-  type: RichStyle
+  type: RichStyle,
 ) => {
   switch (type) {
     case STRONG:
@@ -21,7 +21,7 @@ export const addStyleContent = (
           {text.substring(
             finalStylesArray[j].originalStyles.offset,
             finalStylesArray[j].originalStyles.offset +
-              finalStylesArray[j].originalStyles.length
+              finalStylesArray[j].originalStyles.length,
           )}
         </strong>
       )
@@ -32,7 +32,7 @@ export const addStyleContent = (
           {text.substring(
             finalStylesArray[j].originalStyles.offset,
             finalStylesArray[j].originalStyles.offset +
-              finalStylesArray[j].originalStyles.length
+              finalStylesArray[j].originalStyles.length,
           )}
         </i>
       )
@@ -44,7 +44,7 @@ export const addStyleContent = (
             {text.substring(
               finalStylesArray[j].originalStyles.offset,
               finalStylesArray[j].originalStyles.offset +
-                finalStylesArray[j].originalStyles.length
+                finalStylesArray[j].originalStyles.length,
             )}
           </i>
         </strong>

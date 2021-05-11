@@ -5,19 +5,19 @@ import {
   ContentArrayI,
   FinalStylesArrayI,
   ITALIC,
-  NO_STYLE,
-  STRONG,
   LineParams,
-  RichStyle
+  NO_STYLE,
+  RichStyle,
+  STRONG,
 } from './constants'
+import { completeLine, continueLine, startLine } from './line-functions/index'
 import {
   getFinalStylesArray,
-  getStringifiedStyles
+  getStringifiedStyles,
 } from './style-functions/index'
-import { completeLine, startLine, continueLine } from './line-functions/index'
 
 export const parseJsonStringToContent = (
-  contentString: string
+  contentString: string,
 ): Array<JSX.Element> => {
   const contentArray: Array<ContentArrayI> = JSON.parse(contentString)
 
@@ -37,7 +37,7 @@ export const parseJsonStringToContent = (
       finalContent.push(
         <span key={uid()}>
           <br key={uid()} className={uid()} />
-        </span>
+        </span>,
       )
     } else {
       let finalLine: Array<JSX.Element> = []
@@ -48,14 +48,14 @@ export const parseJsonStringToContent = (
               <span key={uid()} className={uid()}>
                 {text}
                 <br key={uid()} className={uid()} />
-              </span>
+              </span>,
             )
           } else {
             const lineParams: LineParams = {
               finalStylesArray,
               text,
               finalLine,
-              j
+              j,
             }
 
             let STYLE: RichStyle = STRONG
@@ -84,7 +84,7 @@ export const parseJsonStringToContent = (
       finalContent.push(
         <span key={uid()} className={uid()}>
           {finalLine}
-        </span>
+        </span>,
       )
     }
   }

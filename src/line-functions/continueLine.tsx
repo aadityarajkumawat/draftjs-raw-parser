@@ -1,7 +1,7 @@
 import React from 'react'
 import { v4 as uid } from 'uuid'
-import { addStyleContent } from '../style-functions/addStyleContent'
 import { LineParams, RichStyle } from '../constants'
+import { addStyleContent } from '../style-functions/addStyleContent'
 
 export function continueLine(
   { finalLine, finalStylesArray, j, text }: LineParams,

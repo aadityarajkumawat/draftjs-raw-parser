@@ -10,7 +10,7 @@ interface Props {
 export const ParsedData: React.FC<Props> = ({
   rawContent,
   color,
-  fontSize
+  fontSize,
 }) => {
   const contentStyles = { color, fontSize }
   return <div style={contentStyles}>{parseJsonStringToContent(rawContent)}</div>
